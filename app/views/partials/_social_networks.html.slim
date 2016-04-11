@@ -1,0 +1,22 @@
+h2
+  | Вход через социальные сети
+  ul
+    li
+      = link_to 'GitHub',    user_omniauth_authorize_path(:github)
+    li
+      = link_to 'Facebook', user_omniauth_authorize_path(:facebook)
+    li
+      = link_to 'Twitter',  user_omniauth_authorize_path(:twitter)
+
+    div class="social__container"
+      div class="social__item"
+        a target="_blank" href="https://twitter.com/matchboxhero10" class="social__icon--twitter"
+          i class="icon--twitter"
+
+      div class="social__item"
+        a target="_blank" href="http://facebook.com" class="social__icon--facebook"
+          i class="icon--facebook"
+
+      div class="social__item"
+        a target="_blank" href="http://github.com" class="social__icon--github"
+          i class="icon--github"
