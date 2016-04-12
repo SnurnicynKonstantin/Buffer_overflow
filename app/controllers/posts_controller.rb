@@ -20,6 +20,7 @@ class PostsController < ApplicationController
                      text:  params[:post][:text],
                      user_id: current_user.id)
     if @post.save
+      @post.tags << Tag.find(params[:tag])
       render 'show'
     else
       flash[:error] = 'Впопрос и пописание не должны быть пустыми и меньше двух символов.'

@@ -1,0 +1,6 @@
+div class="form-group"
+  label class='col-lg-2 control-label' Тэги
+  div class="col-lg-5"
+    = select_tag('tag',
+                 options_for_select(Tag.all.collect{ |u| [u.tag_name, u.id] }),
+                 class:'form-control')
