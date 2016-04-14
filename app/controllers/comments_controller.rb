@@ -5,7 +5,7 @@ class CommentsController < ApplicationController
                            post_id: params[:comment][:post_id])
 
       if @comment.save
-        #вывести джейсон новый коммент
+        render nothing: true, status: 200
       else
         redirect_to(:back)
       end
