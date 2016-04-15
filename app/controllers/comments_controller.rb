@@ -5,9 +5,9 @@ class CommentsController < ApplicationController
                            post_id: params[:comment][:post_id])
 
       if @comment.save
-        render nothing: true, status: 200
+        render :js => "location.reload(); alert('Комментарий успешно создан');"
       else
-        redirect_to(:back)
+        render :js => "alert('Длина текста комментария должна быть от 2 до 400 символов');"
       end
   end
 

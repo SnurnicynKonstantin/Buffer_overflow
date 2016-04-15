@@ -1,0 +1,19 @@
+class UserRatingCalculator
+
+  def self.calculate
+    log = Logger.new("#{Rails.root}/log/rating.log")
+    User.all.each do |user|
+      rating = 0
+      Vote.all.each do |vote|
+        user_id = user.id
+        comment_id = vote.voteable_id
+        rating += 1 if user.comments(comment_id).exists?
+      end
+      unless user.rating == rating
+        user.update_attributes(rating: rating)
+        log.info("User with id: #{user.id} get rating: #{rating}")
+      end
+    end
+
+  end
+end

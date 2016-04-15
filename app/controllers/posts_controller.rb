@@ -3,13 +3,16 @@ class PostsController < ApplicationController
 
   def new
     @post = Post.new
+    authorize @post
   end
 
   def edit
+    authorize @post
     flash[:error] = nil
   end
 
   def show
+    authorize @post
     @user = User.find(@post.user_id)
   end
 
@@ -17,6 +20,7 @@ class PostsController < ApplicationController
     @post = Post.new(title: params[:post][:title],
                      text:  params[:post][:text],
                      user_id: current_user.id)
+    authorize @post
     if @post.save
       @post.tags << Tag.find(params[:tag])
       render 'show'
@@ -27,6 +31,7 @@ class PostsController < ApplicationController
   end
 
   def update
+    authorize @post
     if Post.update_post(@post, params[:post])
       render 'show'
     else
