@@ -8,6 +8,7 @@ class UserRatingCalculator
         user_id = user.id
         comment_id = vote.voteable_id
         rating += 1 if user.comments(comment_id).exists?
+        log.info("User with id: #{user.id} get rating: #{rating}")
       end
       unless user.rating == rating
         user.update_attributes(rating: rating)
