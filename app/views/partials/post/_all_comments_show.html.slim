@@ -1,6 +1,6 @@
 div class='row'
   div class='col-lg-12 list-group-item'
-    - @post.comments.each do |comment|
+    - @post.comments.decorate.each do |comment|
       div class='well'
         div class='row'
           = comment.text
@@ -8,11 +8,10 @@ div class='row'
           div class='col-lg-4 col-lg-offset-8'
             div class='row'
               div class='col-lg-12'
-                = "Ответ дан "
-                = comment.created_at.strftime("%H:%M %d-%m-%Y")
+                = comment.answer_given
             div class='row'
               div class='col-lg-4'
-                = image_tag(comment.user.avatar.avatar.url)
+                = image_tag(comment.comment_user_avatar)
               div class='col-lg-8'
                 = link_to comment.user.nick, user_path(comment.user)
             div class='row'

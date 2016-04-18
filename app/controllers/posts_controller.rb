@@ -41,7 +41,7 @@ class PostsController < ApplicationController
 
   private
     def set_post
-      @post = Post.find(params[:id])
+      @post = Post.find(params[:id]).decorate
     end
 
     def post_params

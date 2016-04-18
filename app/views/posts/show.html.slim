@@ -9,7 +9,7 @@ div class='col-lg-11'
         div class='page-header'
           h1
             -if @post.tags.exists?
-              = "[#{@post.tags.first.tag_name}]"
+              = @post.tag_of_post
             = @post.title
         div class='list-group-item'
           div class='list-group-item-text'
@@ -23,7 +23,7 @@ div class='col-lg-11'
             div class='col-lg-3 well col-lg-offset-5'
               div class='row'
                 div class='col-lg-12'
-                  = "Задан #{@post.created_at.strftime("%H:%M %d-%m-%Y")}"
+                  = @post.created_at_with_text
               div class='row'
                 div class='col-lg-4'
                   = image_tag(@user.avatar.avatar.url)
@@ -34,5 +34,4 @@ div class='col-lg-11'
       == render 'partials/post/add_comment'
 
     div class='col-lg-3 well'
-      = "Задан "
-      = @post.created_at.strftime("%H:%M %d-%m-%Y")
+      = @post.created_at_with_text
