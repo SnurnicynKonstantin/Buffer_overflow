@@ -5,4 +5,5 @@ div class='row'
       a href="#" class="btn btn-warning btn-sm" Метки
       a href="#" class="btn btn-warning btn-sm" Участники
       a href="#" class="btn btn-warning btn-sm" Без ответа
-      a href="#{new_post_path}" class="btn btn-warning btn-sm" Задать вопрос
+      - if current_user
+        a href="#{new_post_path}" class="btn btn-warning btn-sm" Задать вопрос
