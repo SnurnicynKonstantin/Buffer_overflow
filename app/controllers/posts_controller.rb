@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  #before_action :set_cart, only: [:show, :edit, :update, :destroy]
+  before_action :set_post, only: [:show, :edit, :update]
 
   def new
     @post = Post.new
@@ -7,11 +7,9 @@ class PostsController < ApplicationController
 
   def edit
     flash[:error] = nil
-    @post = Post.find(params[:id])
   end
 
   def show
-    @post = Post.find(params[:id])
     @user = User.find(@post.user_id)
   end
 
@@ -29,7 +27,6 @@ class PostsController < ApplicationController
   end
 
   def update
-    @post = Post.find(params[:id])
     if Post.update_post(@post, params[:post])
       render 'show'
     else
@@ -37,5 +34,10 @@ class PostsController < ApplicationController
       render 'edit'
     end
   end
+
+  private
+    def set_post
+      @post = Post.find(params[:id])
+    end
 
 end

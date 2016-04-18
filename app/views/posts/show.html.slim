@@ -32,4 +32,5 @@ div class='col-lg-11'
       == render 'partials/post/add_comment'
 
     div class='col-lg-3 well'
-      = "Задан #{@post.created_at.strftime("%H:%M %d-%m-%Y")}"
+      = "Задан "
+      = @post.created_at.strftime("%H:%M %d-%m-%Y")
