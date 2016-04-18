@@ -5,9 +5,9 @@ class CommentsController < ApplicationController
                            post_id: params[:comment][:post_id])
 
       if @comment.save
-        render :js => "location.reload(); alert('Комментарий успешно создан');"
+        render 'create_succes.js.coffee'
       else
-        render :js => "alert('Длина текста комментария должна быть от 2 до 400 символов');"
+        render 'create_error.js.coffee'
       end
   end
 
