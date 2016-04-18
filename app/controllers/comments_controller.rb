@@ -9,5 +9,11 @@ class CommentsController < ApplicationController
       else
         redirect_to(:back)
       end
-    end
+  end
+
+  def vote_up
+    @comment = Comment.find(params[:post_id])
+    current_user.vote_for(@comment)
+  end
+
 end
