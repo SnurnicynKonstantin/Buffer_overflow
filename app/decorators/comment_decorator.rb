@@ -1,12 +1,12 @@
 class CommentDecorator < Draper::Decorator
   delegate_all
 
-  def created_at
+  def created_at_strftime
     object.created_at.strftime("%H:%M %d-%m-%Y")
   end
 
   def answer_given
-    "Задан #{object.created_at.strftime("%H:%M %d-%m-%Y")}"
+    "Дан #{object.created_at.strftime("%H:%M %d-%m-%Y")}"
   end
 
   def comment_user_avatar

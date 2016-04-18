@@ -15,6 +15,7 @@ FactoryGirl.define do
       surname 'jonny'
       nick  'jonny'
       email 'john@mail.ru'
+      role 2
     end
   end
 end

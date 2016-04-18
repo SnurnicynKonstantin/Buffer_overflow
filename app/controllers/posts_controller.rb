@@ -7,12 +7,12 @@ class PostsController < ApplicationController
   end
 
   def edit
-    authorize @post
+    authorize Post
     flash[:error] = nil
   end
 
   def show
-    authorize @post
+    authorize Post
     @user = User.find(@post.user_id)
   end
 
@@ -22,7 +22,7 @@ class PostsController < ApplicationController
 
     @post.tags << Tag.find(params[:tag_id])
     if @post.save
-      render 'show'
+      redirect_to root_path
     else
       flash[:error] = 'Впопрос и пописание не должны быть пустыми и меньше двух символов.'
       render 'new'
@@ -30,7 +30,7 @@ class PostsController < ApplicationController
   end
 
   def update
-    authorize @post
+    authorize Post
     if @post.update(post_params)
       render 'show'
     else
