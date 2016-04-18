@@ -1,0 +1,19 @@
+div class='navbar navbar-default navbar-fixed-top'
+  div class='container'
+    div class='navbar-header'
+      = link_to 'BufferOverflow', root_path, class:'navbar-brand'
+    ul class='nav navbar-nav navbar-right'
+      - if user_signed_in?
+        li
+          = link_to(user_shot_path(current_user)) do
+            div 
+              = current_user.nick
+              | &nbsp
+              = image_tag(current_user.avatar.avatar.url)
+        li
+          = link_to 'Выход', destroy_user_session_path, :method => :delete, id: 'exit'
+      - else
+        li
+          = link_to 'Вход', new_user_session_path
+        li
+          = link_to 'Регистрация', new_user_registration_path
