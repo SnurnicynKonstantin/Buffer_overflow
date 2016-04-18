@@ -1,0 +1,7 @@
+- @title = @user.name
+
+= link_to "delete", current_user, method: :delete, data: { confirm: "You sure?" }
+
+= render 'partials/social_networks'
+
+= @user.moderator?

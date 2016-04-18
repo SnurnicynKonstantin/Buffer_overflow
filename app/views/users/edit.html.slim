@@ -1,0 +1,52 @@
+- @title = "Изменение: #{@user.nick}"
+
+div class='col-lg-6 well col-lg-offset-3'
+  = form_for(@user, html: {class: 'form-horizontal'}) do |f|
+    fieldset
+      legend
+        h2
+          | Изменение: #{@user.nick}
+
+    - if flash[:error]
+      div class="alert alert-dismissible alert-warning"
+        h4 Внимание!
+        p
+          - flash[:error].each do |error|
+            = error
+            br
+
+    div class="form-group"
+      = f.label(:nick, class: 'col-lg-2 control-label')
+      div class="col-lg-10"
+        = f.text_field(:nick, autofocus: true, class: 'form-control', placeholder: 'Nick')
+
+    div class="form-group"
+      = f.label(:name, class: 'col-lg-2 control-label')
+      div class="col-lg-10"
+        = f.text_field(:name, class: 'form-control', placeholder: 'Name')
+
+    div class="form-group"
+      = f.label(:surname, class: 'col-lg-2 control-label')
+      div class="col-lg-10"
+        = f.text_field(:surname, class: 'form-control', placeholder: 'Surname')
+
+    div class="form-group"
+      = f.label(:email, class: 'col-lg-2 control-label')
+      div class="col-lg-10"
+        = f.email_field(:email, class: 'form-control', placeholder: 'Email')
+   
+    div class="form-group"
+      = f.label(:avatar, class: 'col-lg-2 control-label')
+      div class="col-lg-10"
+        = f.file_field(:avatar, style: 'padding-top: 10px')
+
+    div class="form-group"
+      = f.label(:password, class: 'col-lg-2 control-label')
+      div class="col-lg-10"
+        = f.password_field(:password, autocomplete: "off", class: 'form-control', placeholder: 'Password')
+
+    div class="actions"
+      = f.submit('Update', class: 'btn btn-primary')
+
+  h3 Операции с профилем
+  = link_to("Удалить", @user, method: :delete, data: { confirm: "Вы уверенны?" })
