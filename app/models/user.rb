@@ -32,7 +32,7 @@ class User < ActiveRecord::Base
   devise :omniauthable, :omniauth_providers => [:twitter, :facebook, :github]
 
   def self.find_for_oauth(auth, loggined_user)
-    @@provider_name = auth.provider
+    @provider_name = auth.provider
     provider = Provider.find_by(uid: auth.uid)
 
     if provider
@@ -61,13 +61,13 @@ class User < ActiveRecord::Base
     end
   end
 
-  # def password_required?
-  #   !@@provider_name
-  # end
-  #
-  # def email_required?
-  #   !@@provider_name
-  # end
+  def password_required?
+    ((provider_name.nil? || provider_name.empty? ) || !password.blank?) && super
+  end
+
+  def email_required?
+    email && (provider_name.nil? || provider_name.empty? )
+  end
 
   private
     def set_default_role

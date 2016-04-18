@@ -1,8 +1,6 @@
 class CommentsController < ApplicationController
   def create
-    @comment = Comment.new(text: params[:comment][:text],
-                           user_id: params[:comment][:user_id],
-                           post_id: params[:comment][:post_id])
+    @comment = Comment.new(comment_params)
 
       if @comment.save
         render 'create_succes.js.coffee'
@@ -15,5 +13,10 @@ class CommentsController < ApplicationController
     @comment = Comment.find(params[:post_id])
     current_user.vote_for(@comment)
   end
+
+  private
+    def comment_params
+      params.require(:comment).permit(:text, :user_id, :post_id)
+    end
 
 end
