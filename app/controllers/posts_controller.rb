@@ -17,12 +17,11 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post = Post.new(title: params[:post][:title],
-                     text:  params[:post][:text],
-                     user_id: current_user.id)
-    authorize @post
+    authorize Post
+    @post = Post.new(post_params)
+
+    @post.tags << Tag.find(params[:tag_id])
     if @post.save
-      @post.tags << Tag.find(params[:tag])
       render 'show'
     else
       flash[:error] = 'Впопрос и пописание не должны быть пустыми и меньше двух символов.'
@@ -32,7 +31,7 @@ class PostsController < ApplicationController
 
   def update
     authorize @post
-    if Post.update_post(@post, params[:post])
+    if @post.update(post_params)
       render 'show'
     else
       flash[:error] = 'Впопрос и пописание не должны быть пустыми и меньше двух символов.'
@@ -45,4 +44,7 @@ class PostsController < ApplicationController
       @post = Post.find(params[:id])
     end
 
+    def post_params
+      params.require(:post).permit(:title, :text, :user_id)
+    end
 end
