@@ -1,0 +1,29 @@
+- @title = 'Задать вопрос'
+
+== render 'partials/main_menu'
+
+div class='col-lg-6 well col-lg-offset-3'
+  = form_for(@post, html: {class: 'form-horizontal'}) do |f|
+    fieldset
+      legend
+        h2
+          | Новый вопрос
+
+    - if flash[:error]
+      div class="alert alert-dismissible alert-warning"
+        h4 Внимание!
+        p
+          = flash[:error]
+
+    div class="form-group"
+      = f.label(:title, class: 'col-lg-2 control-label')
+      div class="col-lg-10"
+        = f.text_field(:title, autofocus: true, class: 'form-control', placeholder: 'В чем заключется ваш вопрос? Будьте конкретны')
+
+    div class="form-group"
+      = f.label(:text, class: 'col-lg-2 control-label')
+      div class="col-lg-10"
+        = f.text_area(:text, class: 'form-control', rows: 10)
+
+    div class="actions"
+      = f.submit('Отправить вопрос', class: 'btn btn-primary')

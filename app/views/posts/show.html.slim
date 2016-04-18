@@ -1,0 +1,32 @@
+- @title = @post.title
+
+== render 'partials/main_menu'
+
+div class='col-lg-11'
+  div class='row'
+    div class='col-lg-9'
+      div class='page-header'
+        h1
+          = @post.title
+      div class='list-group-item'
+        div class='list-group-item-text'
+          | #{@post.text}
+        div class='row'
+          div class='col-lg-3'
+            a href="#{edit_post_path(@post)}" Редактировать
+          div class='col-lg-3 well col-lg-offset-5'
+            div class='row'
+              div class='col-lg-12'
+                = "Задан #{@post.created_at.strftime("%H:%M %d-%m-%Y")}"
+            div class='row'
+              div class='col-lg-4'
+                = image_tag(@user.avatar.avatar.url)
+              div class='col-lg-8'
+                a href="#{user_path(@user)}" = @user.nick
+      div class='row'
+        div class='col-lg-12 list-group-item'
+          = text_area(:text, class: 'form-control', rows: 10)
+
+
+    div class='col-lg-3 well'
+      = "Задан #{@post.created_at.strftime("%H:%M %d-%m-%Y")}"
