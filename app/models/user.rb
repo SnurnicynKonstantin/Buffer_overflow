@@ -69,6 +69,15 @@ class User < ActiveRecord::Base
     email && (provider_name.nil? || provider_name.empty? )
   end
 
+  def vote_for_post?(id)
+    if Postratings.where(post_id: id).exists?
+      true
+    else
+      false
+    end
+
+  end
+
   private
     def set_default_role
       self.role ||= :user
