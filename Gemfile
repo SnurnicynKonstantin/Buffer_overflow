@@ -33,8 +33,11 @@ gem 'draper'
 
 gem 'pundit'
 gem 'will_paginate', '~> 3.1.0'
+gem 'bootstrap-will_paginate'
 
 gem 'whenever', :require => false
+
+gem 'rails_admin'
 
 group :development, :test do
   gem 'byebug'
