@@ -1,4 +1,8 @@
 class Post < ActiveRecord::Base
+  scope :recent, ->     {order(updated_at: :desc)}
+  scope :uncommented, ->{where(comments_count: 0)}
+
+
   validates :title, presence: true,
                     length: { in: 2..50 }
   validates :text,  presence: true,

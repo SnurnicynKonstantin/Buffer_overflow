@@ -4,6 +4,6 @@ div class='row'
       = link_to 'Вопросы', root_path, class: 'btn btn-warning btn-sm'
       = link_to 'Метки', tags_path, class: 'btn btn-warning btn-sm'
       a href="#" class="btn btn-warning btn-sm" Участники
-      a href="#" class="btn btn-warning btn-sm" Без ответа
+      = link_to 'Без ответа', root_path(without_answer: true), class: 'btn btn-warning btn-sm'
       - if current_user
         = link_to 'Задать вопрос', new_post_path, class: 'btn btn-warning btn-sm'

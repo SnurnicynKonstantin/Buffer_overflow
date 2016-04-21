@@ -3,6 +3,7 @@ class CommentsController < ApplicationController
     @comment = Comment.new(comment_params)
 
       if @comment.save
+        Post.find(params[:post_id]).touch
         render 'create_succes.js.coffee'
       else
         render 'create_error.js.coffee'
