@@ -4,9 +4,7 @@ class TagsController < ApplicationController
   end
 
   def show
-    p '+++++++++++++++++++++++++++++++++++++++++++++'
     @posts = Post.joins(:tags)#.where('tag_id = ?', 1)
-    p '+++++++++++++++++++++++++++++++++++++++++++++' + @posts
     #render nothing: true, status: 200
   end
 

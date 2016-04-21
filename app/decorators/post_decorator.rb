@@ -1,4 +1,4 @@
-class PostDecorator < Draper::Decorator
+class PostDecorator < ApplicationDecorator
   delegate_all
 
   def created_at_strftime

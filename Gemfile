@@ -32,6 +32,7 @@ gem 'figaro'
 gem 'draper'
 
 gem 'pundit'
+gem 'will_paginate', '~> 3.1.0'
 
 gem 'whenever', :require => false
 
