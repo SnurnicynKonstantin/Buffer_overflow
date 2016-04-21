@@ -36,4 +36,5 @@ table class='table table-striped table-hover'
           = post.created_at_strftime
         td
           = post.updated_at_strftime
-
+div class='col-lg-offset-3'
+  = will_paginate @posts
