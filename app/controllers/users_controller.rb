@@ -1,7 +1,9 @@
 class UsersController < ApplicationController
   before_action :set_user
 
-  def show;  end
+  def show
+    authorize current_user
+  end
 
   def edit
     flash[:error] = nil

@@ -7,18 +7,18 @@ class UserPolicy
   end
 
   def show?
-    user
+    current_user
   end
 
   def edit?
-    user.admin?
+    current_user.admin?
   end
 
   def update?
-    user.admin?
+    current_user.admin?
   end
 
   def destroy?
-    user.admin?
+    current_user.admin?
   end
 end

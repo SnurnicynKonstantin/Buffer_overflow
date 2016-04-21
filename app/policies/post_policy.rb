@@ -12,7 +12,9 @@ class PostPolicy
   end
 
   def edit?
-    user && ((user.admin?) || (user.moderator? && user.tags.include?(@post.tags.first)))
+    rt = @post.tags.first
+    fg=user.tags.include?(rt)
+    user && ((user.admin?) || (user.moderator? && fg))
   end
 
   def update?
