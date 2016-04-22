@@ -5,7 +5,6 @@ class TagsController < ApplicationController
 
   def show
     @posts = Post.joins(:tags)#.where('tag_id = ?', 1)
-    #c
   end
 
   def create

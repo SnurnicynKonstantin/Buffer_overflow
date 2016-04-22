@@ -12,7 +12,7 @@ class Post < ActiveRecord::Base
   belongs_to :user
   has_and_belongs_to_many :tags
 
-  def self.vote_for_post(value, post, user)
+  def self.vote_for_post(value, post, user)#рефактор
     rating = Postratings.new(user_id: user.id,
                              post_id: post.id,
                              value: value)
