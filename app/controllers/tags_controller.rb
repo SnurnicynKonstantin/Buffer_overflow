@@ -5,7 +5,7 @@ class TagsController < ApplicationController
 
   def show
     @posts = Post.joins(:tags)#.where('tag_id = ?', 1)
-    #render nothing: true, status: 200
+    #c
   end
 
   def create

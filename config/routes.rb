@@ -9,6 +9,9 @@ Rails.application.routes.draw do
   resources :users
   resources :tags
   resources :posts do
+    member do
+      post :vote_up
+    end
     resource :comments do
       member do
         post :vote_up
