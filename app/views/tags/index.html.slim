@@ -7,3 +7,5 @@ h2 Тэги
 div class='bs-component'
   - @tags.each do |tag|
     = link_to(tag.tag_name, tag_path(tag), remote:true, class:'btn btn-warning btn-sm')
+
+div class='posts'
