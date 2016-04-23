@@ -11,7 +11,7 @@ class UsersController < ApplicationController
 
   def update
     if @user.update(user_params)
-      render 'show'
+      sign_in_and_redirect @user
     else
       flash[:error] = @user.errors.full_messages
       render 'edit'

@@ -4,7 +4,7 @@ class TagsController < ApplicationController
   end
 
   def show
-    @posts = Post.joins(:tags)#.where('tag_id = ?', 1)
+    @posts = Post.joins(:tags).where('tag_id = ?', params[:id]).decorate
   end
 
   def create

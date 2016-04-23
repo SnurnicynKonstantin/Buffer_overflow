@@ -2,6 +2,5 @@ div class='row'
   div class='col-lg-12 list-group-item'
     = form_for [@post, Comment.new], :remote => true do |f|
       = f.text_area(:text, class: 'form-control', rows: 7)
-      = f.hidden_field :post_id, value: @post.id
       = f.hidden_field :user_id, value: current_user.id
       = f.submit('Оставить комментарий', class: 'btn btn-primary')
