@@ -20,6 +20,7 @@ div class='row'
                 = comment.voters_who_voted.count
             div class='row'
               div class='col-lg-12'
-                p.vote_link
-                  - unless current_user.voted_on?(comment)
-                    = link_to('+1 Спасибо', vote_up_post_comments_path(comment.id), method: :post, remote: true)
+                - if current_user
+                  p.vote_link
+                    - unless current_user.voted_on?(comment)
+                      = link_to('+1 Спасибо', vote_up_post_comments_path(comment.id), method: :post, remote: true)
