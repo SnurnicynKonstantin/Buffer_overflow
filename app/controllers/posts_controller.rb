@@ -1,6 +1,10 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update]
 
+  def index
+    @posts = Post.joins(:tags).where('tag_id = ?', params[:format]).decorate
+  end
+
   def new
     @post = Post.new
     authorize @post
@@ -12,7 +16,7 @@ class PostsController < ApplicationController
   end
 
   def show
-    authorize Post
+    authorize @post
     @user = User.find(@post.user_id)
   end
 

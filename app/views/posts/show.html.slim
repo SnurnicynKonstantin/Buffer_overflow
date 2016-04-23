@@ -16,10 +16,10 @@ div class='col-lg-11'
             | #{@post.text}
           div class='row'
             div class='col-lg-5'
-              == render 'partials/post/rating_post'
+              == render 'posts/partials/rating_post'
               - if(current_user && ((current_user.admin?) || (current_user.moderator? && current_user.tags.include?(@post.tags.first))))
                   = link_to 'Редактировать ', edit_post_path(@post)
-              - if(current_user.admin?)
+              - if(current_user && current_user.admin?)
                   = link_to 'Удалить', post_path(@post, :method => :delete)
             div class='col-lg-3 well col-lg-offset-3'
               div class='row'
@@ -31,8 +31,8 @@ div class='col-lg-11'
                 div class='col-lg-8'
                   = link_to @user.nick, user_path(@user)
 
-      == render 'partials/post/all_comments_show'
-      == render 'partials/post/add_comment'
+      == render 'posts/partials/all_comments_show'
+      == render 'posts/partials/add_comment'
 
     div class='col-lg-3 well'
       = @post.created_at_with_text

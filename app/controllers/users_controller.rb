@@ -2,14 +2,16 @@ class UsersController < ApplicationController
   before_action :set_user
 
   def show
-    authorize current_user
+    authorize User
   end
 
   def edit
+    authorize User
     flash[:error] = nil
   end
 
   def update
+    authorize User
     if @user.update(user_params)
       sign_in_and_redirect @user
     else
@@ -19,6 +21,7 @@ class UsersController < ApplicationController
   end
 
   def destroy
+    authorize User
     @user.destroy
     redirect_to root_url
   end

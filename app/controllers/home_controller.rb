@@ -1,9 +1,10 @@
 class HomeController < ApplicationController
   def index
+    @posts = Post.paginate(page: params[:page], per_page: 10).recent
     if params[:without_answer] == 'true'
-      @posts = Post.paginate(page: params[:page], per_page: 10).recent.uncommented.decorate
+      @posts = @posts.uncommented.decorate
     else
-      @posts = Post.paginate(page: params[:page], per_page: 10).recent.decorate
+      @posts = @posts.decorate
     end
   end
 end
