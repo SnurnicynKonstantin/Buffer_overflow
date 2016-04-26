@@ -39,6 +39,11 @@ gem 'whenever', :require => false
 
 gem 'rails_admin'
 
+gem 'chartkick'
+gem 'groupdate'
+
+gem 'rails-settings-cached'
+
 group :development, :test do
   gem 'byebug'
   gem 'factory_girl_rails'

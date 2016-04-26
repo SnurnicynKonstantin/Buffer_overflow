@@ -19,7 +19,7 @@ Rails.application.routes.draw do
     end
   end
 
-
+  get '/statistic/:id', to: 'statistics#tag_statistic', as: :tag_statistic
   get '/:id/edit', to: 'users#edit'
   get '/:id',      to: 'users#show', as: :user_shot
 end
