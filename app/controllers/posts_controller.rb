@@ -18,6 +18,7 @@ class PostsController < ApplicationController
   def show
     authorize @post
     @user = User.find(@post.user_id)
+    @user.decorate
   end
 
   def create

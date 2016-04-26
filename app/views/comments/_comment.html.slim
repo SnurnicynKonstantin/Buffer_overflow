@@ -1,0 +1,36 @@
+div class='col-lg-12 list-group-item'
+  div class="col-lg-offset-#{comment.inserted_count}"
+    div class='well'
+      div class='row'
+        div class='col-lg-8'
+          = comment.text
+        div class='col-lg-4 col-lg-offset-8'
+          div class='row'
+            div class='col-lg-12'
+              = comment.answer_given
+          div class='row'
+            div class='col-lg-4'
+              = image_tag(comment.comment_user_avatar)
+            div class='col-lg-8'
+              = link_to comment.user.nick, user_path(comment.user)
+          div class='row'
+            div class='col-lg-12'
+              = 'Рэйтинг комментария: '
+              = comment.voters_who_voted.count
+          div class='row'
+            div class='col-lg-12'
+              - if current_user
+                p.vote_link
+                  - unless current_user.voted_on?(comment)
+                    = link_to('+1 Спасибо', vote_up_post_comments_path(comment.id), method: :post, remote: true)
+      - if (current_user && ((comment.inserted_count + 1) <= Setting.inserted_comment_count))
+        div class='row'
+          div class='col-lg-12 list-group-item'
+            = form_for [@post, Comment.new], :remote => true do |f|
+              = f.text_area(:text, class: 'form-control', rows: 1)
+              = f.hidden_field :user_id, value: current_user.id
+              = f.hidden_field :root_comment_id, value: comment.id
+              = f.hidden_field :inserted_count, value: (comment.inserted_count + 1)
+              = f.submit('Оставить комментарий', class: 'btn btn-primary')
+- if comment.inserted_comment.present?
+  = render(partial: 'posts/partials/all_comments_show', locals:{comments: comment.inserted_comment})

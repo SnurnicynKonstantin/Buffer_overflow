@@ -1,0 +1,14 @@
+# config/app.yml for rails-settings-cached
+defaults: &defaults
+  foo: "Foo"
+  bar: 123
+  inserted_comment_count: 3
+
+development:
+  <<: *defaults
+
+test:
+  <<: *defaults
+
+production:
+  <<: *defaults
