@@ -1,16 +1,12 @@
 div class='rating text-warning'
   - if (current_user && current_user.unvote_for_post?(@post.id))
     = form_for(@post, url: {action: 'vote_up'}, remote: true, method: 'post') do |f|
-      = f.label 1
-      = radio_button_tag :rating, 1, checked: true
-      = f.label 2
-      = radio_button_tag :rating, 2
-      = f.label 3
-      = radio_button_tag :rating, 3
-      = f.label 4
-      = radio_button_tag :rating, 4
-      = f.label 5
-      = radio_button_tag :rating, 5
+      - (1..5).each do |i|
+        = f.label i
+        - if i == 1
+          = radio_button_tag :rating, i, checked: true
+        - else
+          = radio_button_tag :rating, i
       = f.submit('Голосовать за вопрос', class: 'btn btn-primary btn-xs')
   - else
       = "Рэйтинг вопроса #{@post.rating}"

@@ -5,7 +5,6 @@ class CommentsController < ApplicationController
     if params[:comment][:root_comment_id].nil?
       comment = @post.comments.new(comment_post_params)
     else
-      render nothing: true, status: 200 if(params[:comment][:inserted_count].to_i >= Setting.inserted_comment_count)
       comment = Comment.new(comment_comment_params)
       comment.post_id = 0
     end

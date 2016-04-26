@@ -18,11 +18,7 @@ class PostDecorator < ApplicationDecorator
   end
 
   def show_post_with_style #!!!!
-    title_rating = object.title
-    if !object.rating.nil?
-      title_rating += " (рэйтинг: #{object.rating})"
-    end
-    title_rating
+    " (рэйтинг: #{object.rating})"
   end
 
 end

@@ -6,8 +6,8 @@ class PostsController < ApplicationController
   end
 
   def new
+    authorize Post
     @post = Post.new
-    authorize @post
   end
 
   def edit
@@ -18,7 +18,6 @@ class PostsController < ApplicationController
   def show
     authorize @post
     @user = User.find(@post.user_id)
-    @user.decorate
   end
 
   def create

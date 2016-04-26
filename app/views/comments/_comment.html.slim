@@ -23,7 +23,7 @@ div class='col-lg-12 list-group-item'
                 p.vote_link
                   - unless current_user.voted_on?(comment)
                     = link_to('+1 Спасибо', vote_up_post_comments_path(comment.id), method: :post, remote: true)
-      - if (current_user && ((comment.inserted_count + 1) <= Setting.inserted_comment_count))
+      - if (current_user && ((comment.inserted_count + 1) < Setting.inserted_comment_count))
         div class='row'
           div class='col-lg-12 list-group-item'
             = form_for [@post, Comment.new], :remote => true do |f|
