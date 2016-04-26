@@ -50,6 +50,7 @@ GEM
       activesupport (>= 3.2.0)
       json (>= 1.7)
       mime-types (>= 1.16)
+    chartkick (1.4.2)
     chronic (0.10.2)
     coffee-rails (4.1.1)
       coffee-script (>= 2.2.0)
@@ -89,6 +90,8 @@ GEM
       activerecord (>= 4.0.0)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
+    groupdate (2.5.2)
+      activesupport (>= 3)
     haml (4.0.7)
       tilt
     hashie (3.4.3)
@@ -178,6 +181,8 @@ GEM
       rails-deprecated_sanitizer (>= 1.0.1)
     rails-html-sanitizer (1.0.3)
       loofah (~> 2.0)
+    rails-settings-cached (0.6.2)
+      rails (>= 4.2.0)
     rails_admin (0.8.1)
       builder (~> 3.1)
       coffee-rails (~> 4.0)
@@ -298,12 +303,14 @@ DEPENDENCIES
   bootstrap-will_paginate
   byebug
   carrierwave
+  chartkick
   coffee-rails (~> 4.1.0)
   devise
   draper
   factory_girl_rails
   figaro
   friendly_id (~> 5.1.0)
+  groupdate
   i18n
   jbuilder (~> 2.0)
   jquery-rails
@@ -315,6 +322,7 @@ DEPENDENCIES
   pg (~> 0.15)
   pundit
   rails (= 4.2.5.1)
+  rails-settings-cached
   rails_admin
   rspec-mocks
   rspec-rails
