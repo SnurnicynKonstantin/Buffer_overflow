@@ -13,4 +13,8 @@ class CommentDecorator < Draper::Decorator
     object.user.avatar.avatar.url
   end
 
+  def less_them_default?
+    current_user && ((object.inserted_count + 1) <= Setting.inserted_comment_count)
+  end
+
 end

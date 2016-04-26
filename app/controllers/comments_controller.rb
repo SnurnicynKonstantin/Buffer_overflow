@@ -2,13 +2,13 @@ class CommentsController < ApplicationController
   before_action :set_post, only: [:create]
 
   def create
-    @post.comments.new(comment_params)
-
-    if @post.save
-      render 'create_succes.js.coffee'
+    if params[:comment][:root_comment_id].nil?
+      comment = @post.comments.new(comment_post_params)
     else
-      render 'create_error.js.coffee'
+      comment = Comment.new(comment_comment_params)
+      comment.post_id = 0
     end
+      comment.save ? (render 'create_succes.js.coffee') : (render 'create_error.js.coffee')
   end
 
   def vote_up
@@ -17,8 +17,12 @@ class CommentsController < ApplicationController
   end
 
   private
-    def comment_params
+    def comment_post_params
       params.require(:comment).permit(:text, :user_id)
+    end
+
+    def comment_comment_params
+      params.require(:comment).permit(:text, :user_id, :root_comment_id, :inserted_count)
     end
 
   def set_post

@@ -5,13 +5,13 @@
 div class='col-lg-11'
   div class='row'
     div class='col-lg-9'
-      div class='row'
+      div class='list-group-item col-lg-12'
         div class='page-header'
           h1
             -if @post.tags.exists?
               = @post.tag_of_post
             = @post.title
-        div class='list-group-item'
+        div class='list-group-item col-lg-12'
           div class='list-group-item-text'
             | #{@post.text}
           div class='row'
@@ -31,8 +31,8 @@ div class='col-lg-11'
                 div class='col-lg-8'
                   = link_to @user.nick, user_path(@user)
 
-      == render 'posts/partials/all_comments_show'
-      == render 'posts/partials/add_comment'
+      = render(partial: 'posts/partials/all_comments_show', locals:{comments: @post.comments})
+      = render 'posts/partials/add_comment'
 
     div class='col-lg-3 well'
       = @post.created_at_with_text

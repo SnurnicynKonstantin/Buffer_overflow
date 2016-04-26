@@ -10,9 +10,14 @@ class UserDecorator < Draper::Decorator
     object.posts.each do |post|
       tags << post.tags.first
     end
+
     tag_count = {}
     tags.group_by(&:tag_name).each { |k, v| tag_count[k] = v.length }
     tag_count
+  end
+
+  def current_user_admin?
+    object.exist? && object.admin?
   end
 
 end

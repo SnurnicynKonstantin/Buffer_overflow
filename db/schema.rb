@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160421070335) do
+ActiveRecord::Schema.define(version: 20160426064109) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,11 +20,14 @@ ActiveRecord::Schema.define(version: 20160421070335) do
     t.integer  "post_id"
     t.integer  "user_id"
     t.string   "text"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.integer  "root_comment_id"
+    t.integer  "inserted_count",  default: 0
   end
 
   add_index "comments", ["post_id"], name: "index_comments_on_post_id", using: :btree
+  add_index "comments", ["root_comment_id"], name: "index_comments_on_root_comment_id", using: :btree
   add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
 
   create_table "postratings", force: :cascade do |t|
@@ -43,10 +46,10 @@ ActiveRecord::Schema.define(version: 20160421070335) do
     t.integer  "user_id"
     t.string   "title"
     t.string   "text"
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
     t.integer  "comments_count", default: 0
-    t.float    "rating"
+    t.float    "rating",         default: 0.0
   end
 
   add_index "posts", ["user_id"], name: "index_posts_on_user_id", using: :btree
@@ -63,6 +66,17 @@ ActiveRecord::Schema.define(version: 20160421070335) do
   end
 
   add_index "providers", ["user_id"], name: "index_providers_on_user_id", using: :btree
+
+  create_table "settings", force: :cascade do |t|
+    t.string   "var",                   null: false
+    t.text     "value"
+    t.integer  "thing_id"
+    t.string   "thing_type", limit: 30
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "settings", ["thing_type", "thing_id", "var"], name: "index_settings_on_thing_type_and_thing_id_and_var", unique: true, using: :btree
 
   create_table "tags", force: :cascade do |t|
     t.string   "tag_name"

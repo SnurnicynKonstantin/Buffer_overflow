@@ -1,0 +1,9 @@
+div class='col-lg-4'
+  div class='list-group table-of-contents'
+    a class='list-group-item' href="#{post_path(post)}"
+      span class='label label-warning'
+        = post.tags.first.tag_name
+      =post.show_post_with_style
+      p
+        |Автор:
+        = post.user.name
