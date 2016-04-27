@@ -51,7 +51,7 @@ class User < ActiveRecord::Base
         user = User.new(name: auth.info.name,
                         surname: auth.info.name,
                         email: auth.info.email,
-                        nick: auth.info.nickname
+                        nick: auth.info.nickname,
         )
 
         if user.save
@@ -63,11 +63,11 @@ class User < ActiveRecord::Base
   end
 
   def password_required?
-    ((provider_name.nil? || provider_name.empty? ) || !password.blank?) && super
+    ((self.provider_name.nil? || self.provider_name.empty? ) || !password.blank?) && super
   end
 
   def email_required?
-    email && (provider_name.nil? || provider_name.empty? )
+    email && (@provider_name.nil? || @provider_name.empty? )
   end
 
   def unvote_for_post?(id)

@@ -3,12 +3,17 @@ class CommentsController < ApplicationController
 
   def create
     if params[:comment][:root_comment_id].nil?
-      comment = @post.comments.new(comment_post_params)
+      @comment = @post.comments.new(comment_post_params)
     else
-      comment = Comment.new(comment_comment_params)
-      comment.post_id = 0
+      @comment = Comment.new(comment_comment_params)
+      @comment.post_id = 0
     end
-      comment.save ? (render 'create_succes.js.coffee') : (render 'create_error.js.coffee')
+
+    if @comment.save
+      render 'create_succes.js.coffee'
+    else
+      render 'create_error.js.coffee'
+    end
   end
 
   def vote_up
