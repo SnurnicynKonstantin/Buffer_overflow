@@ -5,7 +5,6 @@ class UserRatingCalculator
     User.all.each do |user|
       rating = 0
       Vote.all.each do |vote|
-        user_id = user.id
         comment_id = vote.voteable_id
         rating += 1 if user.comments(comment_id).exists?
         log.info("User with id: #{user.id} get rating: #{rating}")

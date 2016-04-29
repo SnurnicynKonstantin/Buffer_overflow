@@ -8,16 +8,19 @@ class PostsController < ApplicationController
   def new
     authorize Post
     @post = Post.new
+    @title = 'Задать вопрос'
   end
 
   def edit
     authorize @post
     flash[:error] = nil
+    @title = 'Редактирование вопроса'
   end
 
   def show
     authorize @post
     @user = User.find(@post.user_id)
+    @title = @post.title
   end
 
   def create
@@ -33,10 +36,15 @@ class PostsController < ApplicationController
     end
   end
 
+  def destroy
+    Post.find(params[:id]).destroy
+    redirect_to root_url
+  end
+
   def vote_up
     @post = Post.find(params[:id])
     if @post
-      @rating = Post.vote_for_post(params[:rating], @post, current_user)
+      @rating = PostRatingCalculator.calculate(params[:rating], @post, current_user)
     else
       render nothing: true, status: 200
     end

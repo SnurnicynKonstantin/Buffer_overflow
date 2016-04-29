@@ -3,11 +3,13 @@ class UsersController < ApplicationController
 
   def show
     authorize User
+    @title = @user.name
   end
 
   def edit
     authorize User
     flash[:error] = nil
+    @title = @user.user_change
   end
 
   def update

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160426064109) do
+ActiveRecord::Schema.define(version: 20160427095408) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,7 +30,7 @@ ActiveRecord::Schema.define(version: 20160426064109) do
   add_index "comments", ["root_comment_id"], name: "index_comments_on_root_comment_id", using: :btree
   add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
 
-  create_table "postratings", force: :cascade do |t|
+  create_table "post_ratings", force: :cascade do |t|
     t.string   "user_id"
     t.integer  "post_id"
     t.integer  "value"
@@ -38,9 +38,9 @@ ActiveRecord::Schema.define(version: 20160426064109) do
     t.datetime "updated_at"
   end
 
-  add_index "postratings", ["post_id"], name: "index_postratings_on_post_id", using: :btree
-  add_index "postratings", ["user_id", "post_id"], name: "index_postratings_on_user_id_and_post_id", unique: true, using: :btree
-  add_index "postratings", ["user_id"], name: "index_postratings_on_user_id", using: :btree
+  add_index "post_ratings", ["post_id"], name: "index_post_ratings_on_post_id", using: :btree
+  add_index "post_ratings", ["user_id", "post_id"], name: "index_post_ratings_on_user_id_and_post_id", unique: true, using: :btree
+  add_index "post_ratings", ["user_id"], name: "index_post_ratings_on_user_id", using: :btree
 
   create_table "posts", force: :cascade do |t|
     t.integer  "user_id"
