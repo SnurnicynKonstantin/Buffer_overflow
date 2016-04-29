@@ -18,28 +18,28 @@ describe PostsController do
   end
 
   it 'signined user create post' do
-    post :create, :post => post_first, tag_id: Tag.first.id
+    post :create, post: post_first, tag_id: Tag.first.id
     expect(Post.last.title).to eq('Test11')
   end
 
-  # it 'owner can update his post' do
-  #   post :create, :post => post_first, tag_id: Tag.first.id
-  #   p Post.last
-  #   edited_post = Post.last
-  #   edited_post[:title] = 'Errors'
-  #   p edited_post
-  #   put :update, post: edited_post
-  #   p Post.last
-  #
-  # end
+  it 'owner can update his post' do #?
+    post :create, post: post_first, tag_id: Tag.first.id
+    edited_post = Post.last
+    edited_post[:title] = 'Errors'
+    put :update,{ id: edited_post.id, title: 'Errors'}
+  end
 
   it 'show post by its id' do
-    post :create, :post => post_first, tag_id: Tag.first.id
+    post :create, post: post_first, tag_id: Tag.first.id
     get :show, id: Post.last.id
     expect(response.status).to eq(200)
     expect(response).to render_template(:show)
   end
 
-end
+  it 'successful vote_up' do
+    post :create, post: post_first, tag_id: Tag.first.id
+    post :vote_up, id: Post.first.id, rating: 3
+    expect(Post.first.rating).to eq(3)
+  end
 
-#update
+end

@@ -3,20 +3,31 @@ require 'rails_helper'
 describe CommentsController do
   include Devise::TestHelpers
 
-  before(:each) {
-    @user = create(:first_user)
-    create(:rails_tag)
-    sign_in @user
-    # post :create, :post => post_first, tag_id: Tag.first.id
-  }
+  let(:user) { create(:first_user) }
+  let(:tag)  { create(:rails_tag) }
 
   let(:post_first) do
-    {title: 'Test11', text: 'Test12', user_id: @user.id}
+    {title: 'Test11', text: 'Test12'}
   end
 
-  # it 'create comment' do
-  #   post :create, comment: {text: 'comment', user_id: @user.id, post_id: Post.last}
-  # end
+  before { sign_in(user)
+           create(:rails_tag)
+           create(:first_post)
+  }
+
+  it 'success create comment' do
+    post :create, comment: {text:'Test', user_id: user.id}, post_id: Post.last.id
+    expect(Comment.last.text).to eq('Test')
+    expect(response.status).to eq(200)
+  end
+
+  it 'vote_up successful' do
+    post :create, comment: {text:'Test', user_id: user.id}, post_id: Post.last.id
+    comment = Comment.last
+    post :vote_up, post_id: comment.id
+    p user.voted_on?(comment)#?
+    expect(user.voted_on?(comment)).to eq(true)
+  end
 
 end
 
