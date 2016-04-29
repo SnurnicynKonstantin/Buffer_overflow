@@ -17,4 +17,8 @@ class CommentDecorator < Draper::Decorator
     current_user && ((object.inserted_count + 1) <= Setting.inserted_comment_count)
   end
 
+  def comment_less_then_inserted_comment_count? (current_user)
+    (current_user && ((object.inserted_count + 1) < Setting.inserted_comment_count))
+  end
+
 end

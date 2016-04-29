@@ -13,9 +13,18 @@ class Comment < ActiveRecord::Base
   after_create :update_post
   acts_as_voteable
 
+  def find_last_comment (comment_id)
+    root_comment = Comment.find(comment_id)
+    if root_comment.inserted_comment.present?
+      find_last_comment(root_comment.inserted_comment.last.id)
+    else
+      comment_id
+    end
+  end
+
   private
 
-  def update_post
-    self.post.touch if self.post.present?
-  end
+    def update_post
+      self.post.touch if self.post.present?
+    end
 end

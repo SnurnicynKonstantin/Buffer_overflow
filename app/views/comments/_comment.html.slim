@@ -1,4 +1,4 @@
-div class='col-lg-12 list-group-item' id="#{comment.id}"
+div class="col-lg-12 list-group-item #{comment.id}" id="#{comment.id}"
   div class="col-lg-offset-#{comment.inserted_count}"
     div class='well'
       div class='row'
@@ -23,11 +23,11 @@ div class='col-lg-12 list-group-item' id="#{comment.id}"
                 p.vote_link
                   - unless current_user.voted_on?(comment)
                     = link_to('+1 Спасибо', vote_up_post_comments_path(comment.id), method: :post, remote: true)
-      - if (current_user && ((comment.inserted_count + 1) < Setting.inserted_comment_count))
+      - if comment.comment_less_then_inserted_comment_count? (current_user)
         div class='row'
           div class='col-lg-12 list-group-item'
             = form_for [@post, Comment.new], :remote => true do |f|
-              = f.text_area(:text, class: 'form-control', rows: 1)
+              = f.text_area(:text, class: 'form-control comment-text', rows: 1)
               = f.hidden_field :user_id, value: current_user.id
               = f.hidden_field :root_comment_id, value: comment.id
               = f.hidden_field :inserted_count, value: (comment.inserted_count + 1)

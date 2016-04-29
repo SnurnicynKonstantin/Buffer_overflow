@@ -5,19 +5,19 @@ class UserDecorator < Draper::Decorator
     object.created_at.strftime("%H:%M %d-%m-%Y")
   end
 
-  def statistic_activity
-    tags = []
-    object.posts.each do |post|
-      tags << post.tags.first
-    end
+  def user_change
+    "Изменение: #{object.nick}"
+  end
 
-    tag_count = {}
-    tags.group_by(&:tag_name).each { |k, v| tag_count[k] = v.length }
-    tag_count
+  def statistic_activity
+    Tag.joins(:posts).where(posts: {id: object.posts.pluck(:id)}).group(:tag_name).count
   end
 
   def current_user_admin?
     object.exist? && object.admin?
   end
 
+  def is_moderator? (post)
+    (object.admin?) || (object.moderator? && object.tags.include?(post.tags.first))
+  end
 end

@@ -46,6 +46,7 @@ class User < ActiveRecord::Base
 
       if user
         user.providers.create(provider: auth.provider, uid: auth.uid)
+        @email = true
         user
       else
         user = User.new(name: auth.info.name,
@@ -63,15 +64,15 @@ class User < ActiveRecord::Base
   end
 
   def password_required?
-    ((self.provider_name.nil? || self.provider_name.empty? ) || !password.blank?) && super
+    ((provider_name.nil? || provider_name.empty? ) || !password.blank?) && super
   end
 
   def email_required?
-    email && (@provider_name.nil? || @provider_name.empty? )
+    email && (provider_name.nil? || provider_name.empty? )
   end
 
   def unvote_for_post?(id)
-    if Postratings.where(post_id: id).exists?
+    if Post_rating.where(post_id: id).exists?
       false
     else
       true
