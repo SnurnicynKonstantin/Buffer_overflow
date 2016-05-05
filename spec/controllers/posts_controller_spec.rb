@@ -38,7 +38,7 @@ describe PostsController do
 
   it 'successful vote_up' do
     post :create, post: post_first, tag_id: Tag.first.id
-    post :vote_up, id: Post.first.id, rating: 3
+    xhr :post, :vote_up, id: Post.first.id, rating: 3
     expect(Post.first.rating).to eq(3)
   end
 

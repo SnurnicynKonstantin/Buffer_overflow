@@ -7,6 +7,6 @@ div class='rating text-warning'
           = radio_button_tag :rating, i, checked: true
         - else
           = radio_button_tag :rating, i
-      = f.submit('Голосовать за вопрос', class: 'btn btn-primary btn-xs')
+      = f.submit(t('post_rating.vote_for'), class: 'btn btn-primary btn-xs')
   - else
-      = "Рэйтинг вопроса #{@post.rating}"
+      = t('post_rating.rating_question') + " #{@post.rating}"

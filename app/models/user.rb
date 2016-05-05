@@ -1,7 +1,6 @@
 class User < ActiveRecord::Base
   mount_uploader :avatar, AvatarUploader
 
-  attr_accessor :provider_name
   extend FriendlyId
 
   devise :database_authenticatable, :registerable,
@@ -32,47 +31,29 @@ class User < ActiveRecord::Base
 
   devise :omniauthable, :omniauth_providers => [:twitter, :facebook, :github]
 
-  def self.find_for_oauth(auth, loggined_user)
-    @provider_name = auth.provider
-    provider = Provider.find_by(uid: auth.uid)
-
-    if provider
-      User.find(provider.user_id)
-    elsif loggined_user
-      loggined_user.providers.create(provider: auth.provider, uid: auth.uid)
-      loggined_user
-    else
-      user = User.where(email: auth.info.email).first
-
-      if user
-        user.providers.create(provider: auth.provider, uid: auth.uid)
-        @email = true
-        user
-      else
-        user = User.new(name: auth.info.name,
-                        surname: auth.info.name,
-                        email: auth.info.email,
-                        nick: auth.info.nickname,
-        )
-
-        if user.save
-          user.providers.create(provider: auth.provider, uid: auth.uid)
-        end
-        user
-      end
+  def apply_omniauth(omniauth)
+    if nick.blank?
+      self.nick = omniauth['info']['name'] || omniauth['info']['first_name'] || omniauth['info']['nickname']
+      self.name = self.nick
+      self.surname = self.nick
     end
+    self.email =    omniauth['info']['email'] if email.blank?
+
+    providers.build(:provider => omniauth['provider'],
+                    :uid => omniauth['uid']
+    )
   end
 
   def password_required?
-    ((provider_name.nil? || provider_name.empty? ) || !password.blank?) && super
+    (providers.empty? || !password.blank?) && super
   end
 
   def email_required?
-    email && (provider_name.nil? || provider_name.empty? )
+    email && providers.empty?
   end
 
   def unvote_for_post?(id)
-    if Post_rating.where(post_id: id).exists?
+    if PostRating.where(post_id: id).exists?
       false
     else
       true

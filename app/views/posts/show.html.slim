@@ -3,7 +3,7 @@
 div class='col-lg-11'
   div class='row'
     div class='col-lg-9'
-      div class='list-group-item col-lg-12'
+      div class="list-group-item col-lg-12 #{@post.id}"
         div class='page-header'
           h1
             -if @post.tags.exists?
@@ -16,10 +16,10 @@ div class='col-lg-11'
             div class='col-lg-5'
               == render 'posts/partials/rating_post'
               - if current_user && current_user.decorate.is_moderator?(@post)
-                  = link_to 'Редактировать ', edit_post_path(@post)
+                  = link_to t('post_show.edit'), edit_post_path(@post)
               - if (current_user && current_user.admin?)
-                  = link_to 'Удалить', @post, method: :delete,
-                            data: { confirm: 'Вы уверены?' }
+                  = link_to t('post_show.delete'), @post, method: :delete,
+                            data: { confirm: t('post_show.confirm') }
             div class='col-lg-3 well col-lg-offset-3'
               div class='row'
                 div class='col-lg-12'

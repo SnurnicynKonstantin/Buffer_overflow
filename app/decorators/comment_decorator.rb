@@ -6,7 +6,7 @@ class CommentDecorator < Draper::Decorator
   end
 
   def answer_given
-    "Дан #{object.created_at.strftime("%H:%M %d-%m-%Y")}"
+    "#{I18n.t('comment.given')} #{object.created_at.strftime("%H:%M %d-%m-%Y")}"
   end
 
   def comment_user_avatar

@@ -3,13 +3,13 @@ class CommentsController < ApplicationController
 
   def create
     root_comment_id = params[:comment][:root_comment_id]
-    if root_comment_id.nil?
-      @comment = @post.comments.new(comment_post_params)
-      @past_post_id = @post.comments.last.id
-    else
+    if root_comment_id
       @comment = Comment.new(comment_comment_params)
-      @comment.post_id = 0
+      @comment.post_id = nil
       @past_post_id = @comment.find_last_comment(root_comment_id)
+    else
+      @past_post_id = @post.id
+      @comment = @post.comments.new(comment_post_params)
     end
 
     if @comment.save

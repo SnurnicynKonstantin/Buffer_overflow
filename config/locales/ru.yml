@@ -1,0 +1,64 @@
+ru:
+  head:
+    ru: "Рус"
+    en: "Анг"
+    exit: "Выход"
+    login: "Вход"
+    registration: "Регистрация"
+  main_menu:
+    questions: "Вопросы"
+    tags: "Метки"
+    without_questions: "Без ответов"
+    ask: "Спросить"
+  social_networks:
+    enter: "Вход через социальные сети"
+  home_index:
+    question: "Вопрос"
+    tag: "Метка"
+    author: "Автор"
+    answers: "Ответы"
+    created: "Создан"
+    updated: "Редактирован"
+    rating: "рэйтинг"
+  post_show:
+    edit: "Редактировать"
+    delete: "Удалить"
+    confirm: "Вы уверены?"
+    asked: "Задан"
+    new: "Новый вопрос"
+    title_pl: "В чем заключется ваш вопрос? Будьте конкретны"
+    title: "Вопрос"
+    text: "Описание"
+    ask: "Спросить"
+  post_rating:
+    rating_question: "Рэйтинг вопроса"
+    vote_for: "Голосовать за вопрос"
+  comment:
+    comment: "Оставить комментарий"
+    comment_rating: "Рэйтинг комментария: "
+    given: "Дан"
+  tag:
+    header: "Метки"
+    plus: "+1 спасибо"
+  user:
+    activity: "Активность"
+    rating_user: "Рэйтинг пользователя:"
+    moderator: "Модератор разделов:"
+    activity_paragr: "Активность по меткам"
+    activity_post: "Активность по постам"
+  login:
+    email: "Почта"
+    password: "Пароль"
+    password_confirm: "Подтверждение пароля"
+    remember_me: "Запомнить иеня"
+    forgot_pass: "Забыли пароль?"
+    nick: "Ник"
+    name: "Имя"
+    surname: "Фамилия"
+    avatar: "Аватар"
+  error:
+    question: "Впопрос и пописание не должны быть пустыми и меньше двух символов."
+  will_paginate:
+    previous_label: "&#8592; Назад"
+    next_label: "Далее &#8594;"
+    page_gap: "&hellip;"
