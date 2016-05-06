@@ -10,7 +10,7 @@ class PostDecorator < ApplicationDecorator
   end
 
   def created_at_with_text
-    "Задан #{object.created_at.strftime("%H:%M %d-%m-%Y")}"
+    "#{I18n.t('post_show.asked')} #{object.created_at.strftime("%H:%M %d-%m-%Y")}"
   end
 
   def tag_of_post
@@ -18,6 +18,6 @@ class PostDecorator < ApplicationDecorator
   end
 
   def show_post_with_style
-    " (рэйтинг: #{object.rating})"
+    " (#{I18n.t('home_index.rating')}: #{object.rating})"
   end
 end

@@ -8,7 +8,6 @@ class UsersController < ApplicationController
 
   def edit
     authorize User
-    flash[:error] = nil
     @title = @user.user_change
   end
 
@@ -17,7 +16,7 @@ class UsersController < ApplicationController
     if @user.update(user_params)
       sign_in_and_redirect @user
     else
-      flash[:error] = @user.errors.full_messages
+      flash.now[:error] = @user.errors.full_messages
       render 'edit'
     end
   end

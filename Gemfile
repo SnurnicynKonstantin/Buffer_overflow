@@ -42,6 +42,10 @@ gem 'rails_admin'
 gem 'chartkick'
 gem 'groupdate'
 
+gem 'rails-i18n'
+
+gem 'simplecov', :require => false, :group => :test
+
 gem 'rails-settings-cached'
 
 group :development, :test do

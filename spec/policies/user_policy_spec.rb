@@ -15,10 +15,6 @@ describe UserPolicy do
     it 'access if user logged' do
       expect(subject).to permit(create(:first_user))
     end
-
-    it 'denies access if user not logged' do
-      expect(subject).not_to permit(nil)
-    end
   end
 
 end

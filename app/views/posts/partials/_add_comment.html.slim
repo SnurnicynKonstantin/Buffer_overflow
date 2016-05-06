@@ -3,4 +3,4 @@
     = form_for [@post, Comment.new], :remote => true do |f|
       = f.text_area(:text, class: 'form-control', rows: 7)
       = f.hidden_field :user_id, value: current_user.id
-      = f.submit('Оставить комментарий', class: 'btn btn-primary')
+      = f.submit(t('comment.comment'), class: 'btn btn-primary')

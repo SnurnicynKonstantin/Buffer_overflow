@@ -1,5 +1,5 @@
 div class="form-group"
-  label class='col-lg-2 control-label' Тэги
+  label class='col-lg-2 control-label' = t('main_menu.tags')
   div class="col-lg-5"
     = select_tag('tag_id',
                  options_for_select(Tag.all.collect{ |u| [u.tag_name, u.id] }),

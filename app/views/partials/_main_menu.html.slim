@@ -1,8 +1,8 @@
 div class='row'
   div class='col-lg-5 col-md-offset-7'
     p class='bs_component'
-      = link_to 'Вопросы', root_path, class: 'btn btn-warning btn-sm'
-      = link_to 'Метки', tags_path, class: 'btn btn-warning btn-sm'
-      = link_to 'Без ответа', root_path(without_answer: true), class: 'btn btn-warning btn-sm'
+      = link_to t('main_menu.questions'), root_path, class: 'btn btn-warning btn-sm'
+      = link_to t('main_menu.tags'), tags_path, class: 'btn btn-warning btn-sm'
+      = link_to t('main_menu.without_questions'), root_path(without_answer: true), class: 'btn btn-warning btn-sm'
       - if current_user
-        = link_to 'Задать вопрос', new_post_path, class: 'btn btn-warning btn-sm'
+        = link_to t('main_menu.ask'), new_post_path, class: 'btn btn-warning btn-sm'

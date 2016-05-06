@@ -24,7 +24,7 @@ describe CommentsController do
   it 'vote_up successful' do
     post :create, comment: {text:'Test', user_id: user.id}, post_id: Post.last.id
     comment = Comment.last
-    post :vote_up, post_id: comment.id
+    xhr :post, :vote_up, post_id: comment.id
     p user.voted_on?(comment)#?
     expect(user.voted_on?(comment)).to eq(true)
   end

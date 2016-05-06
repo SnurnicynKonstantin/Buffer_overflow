@@ -15,14 +15,14 @@ div class="col-lg-12 list-group-item #{comment.id}" id="#{comment.id}"
               = link_to comment.user.nick, user_path(comment.user)
           div class='row'
             div class='col-lg-12'
-              = 'Рэйтинг комментария: '
+              = t('comment.comment_rating')
               = comment.voters_who_voted.count
           div class='row'
             div class='col-lg-12'
               - if current_user
                 p.vote_link
                   - unless current_user.voted_on?(comment)
-                    = link_to('+1 Спасибо', vote_up_post_comments_path(comment.id), method: :post, remote: true)
+                    = link_to(t('tag.plus'), vote_up_post_comments_path(comment.id), method: :post, remote: true)
       - if comment.comment_less_then_inserted_comment_count? (current_user)
         div class='row'
           div class='col-lg-12 list-group-item'
@@ -31,6 +31,6 @@ div class="col-lg-12 list-group-item #{comment.id}" id="#{comment.id}"
               = f.hidden_field :user_id, value: current_user.id
               = f.hidden_field :root_comment_id, value: comment.id
               = f.hidden_field :inserted_count, value: (comment.inserted_count + 1)
-              = f.submit('Оставить комментарий', class: 'btn btn-primary')
+              = f.submit(t('comment.comment'), class: 'btn btn-primary')
 - if comment.inserted_comment.present?
   = render(partial: 'posts/partials/all_comments_show', locals:{comments: comment.inserted_comment})

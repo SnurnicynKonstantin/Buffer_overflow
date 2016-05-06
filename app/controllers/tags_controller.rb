@@ -1,7 +1,7 @@
 class TagsController < ApplicationController
   def index
     @tags = Tag.all
-    @title = 'Тэги'
+    @title = t('tag.header')
   end
 
   def create

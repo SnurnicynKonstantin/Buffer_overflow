@@ -9,8 +9,8 @@ div class='col-lg-6 well col-lg-offset-3'
       div class="alert alert-dismissible alert-warning"
         h4 Внимание!
         p
-          - flash[:error].each do |error|
-            = error
+          - flash.each do |error, message|
+            = message
             br
 
     div class="form-group"
