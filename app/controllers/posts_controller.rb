@@ -2,7 +2,7 @@ class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update]
 
   def index
-    @posts = Post.joins(:tags).where('tag_id = ?', params[:format]).decorate
+    @posts = Post.joins(:tags).where('tag_id = ?', params[:tag_id]).decorate
   end
 
   def new
