@@ -3,7 +3,9 @@ div class='col-lg-4'
     a class='list-group-item' href="#{post_path(post)}"
       span class='label label-warning'
         = post.tags.first.tag_name
-      =post.show_post_with_style
+      p
+        = post.title
+        = post.show_post_with_style
       p
         = "#{t('home_index.author')}: "
         = post.user.name

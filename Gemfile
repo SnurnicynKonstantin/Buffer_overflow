@@ -48,6 +48,8 @@ gem 'simplecov', :require => false, :group => :test
 
 gem 'rails-settings-cached'
 
+gem 'searchkick'
+
 group :development, :test do
   gem 'byebug'
   gem 'factory_girl_rails'

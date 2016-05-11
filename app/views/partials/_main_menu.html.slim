@@ -3,6 +3,7 @@ div class='row'
     p class='bs_component'
       = link_to t('main_menu.questions'), root_path, class: 'btn btn-warning btn-sm'
       = link_to t('main_menu.tags'), tags_path, class: 'btn btn-warning btn-sm'
+      = link_to 'Поиск', search_page_path, class: 'btn btn-warning btn-sm'
       = link_to t('main_menu.without_questions'), root_path(without_answer: true), class: 'btn btn-warning btn-sm'
       - if current_user
         = link_to t('main_menu.ask'), new_post_path, class: 'btn btn-warning btn-sm'

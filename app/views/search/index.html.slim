@@ -1,0 +1,11 @@
+== render 'partials/main_menu'
+
+h2 = t('search.title')
+
+= form_tag(search_post_path, method: 'post', remote: true)  do
+  div class='input-group col-lg-4'
+    = text_field_tag(:post_info, nil, autofocus: true, class: 'form-control')
+    span class='input-group-btn'
+      = submit_tag(t('search.search'), class: 'btn btn-primary')
+
+div class='posts' style='margin-top:20px'
