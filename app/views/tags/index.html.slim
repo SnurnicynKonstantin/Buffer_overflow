@@ -4,6 +4,6 @@ h2 = t('tag.header')
 
 div class='bs-component' style='margin-bottom:20px'
   - @tags.each do |tag|
-    = link_to(tag.tag_name, posts_path(tag.id), remote:true, class:'btn btn-warning btn-sm')
+    = link_to(tag.tag_name, posts_path(tag_id: tag.id), remote:true, class:'btn btn-warning btn-sm')
 
 div class='posts'

@@ -64,4 +64,5 @@ en:
     page_gap: "&hellip;"
   search:
     search: "Find"
+    searching: "Finding"
     title: "Finding by questions"

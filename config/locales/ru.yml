@@ -64,4 +64,5 @@ ru:
     page_gap: "&hellip;"
   search:
     search: "Искать"
+    searching: "Поиск"
     title: "Поиск по вопросам"
