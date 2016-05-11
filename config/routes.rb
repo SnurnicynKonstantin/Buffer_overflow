@@ -21,6 +21,8 @@ Rails.application.routes.draw do
 
   get '/statistic/:id', to: 'statistics#tag_statistic', as: :tag_statistic
   get '/:id/edit', to: 'users#edit'
-  get '/:id',      to: 'users#show', as: :user_shot
+  get '/search',   to: 'search#index',  as: :search_page
+  post '/search',  to: 'search#search', as: :search_post
+  get '/:id',      to: 'users#show',    as: :user_shot
   get '/change_locale/:locale', to: 'sessions#change_locale', as: :change_locale
 end

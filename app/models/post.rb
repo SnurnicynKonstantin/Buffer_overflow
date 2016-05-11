@@ -10,4 +10,6 @@ class Post < ActiveRecord::Base
                     length: { in: 2..50 }
   validates :text,  presence: true,
                     length: { in: 2..1000 }
+
+  searchkick
 end
