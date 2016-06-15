@@ -1,0 +1,22 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+
+  pool: 5
+
+  username: <%= ENV['db_username'] %>
+  password: <%= ENV['db_password'] %>
+
+development:
+  <<: *default
+  database: Buffer_Overflow_development
+
+test:
+  <<: *default
+  database: Buffer_Overflow_test
+
+production:
+  <<: *default
+  database: Buffer_Overflow_production
+  username: <%= ENV['BUFFER_OVERFLOW_DATABASE_USER_NAME'] %>
+  password: <%= ENV['BUFFER_OVERFLOW_DATABASE_PASSWORD'] %>

@@ -7,3 +7,6 @@ twitter_token:  'lrkLcKeOcAVxx3ESWO4o0KXEDu5modkvGGpFI8OJu3KRa9wzk4'
 
 admin_name:     'admin'
 admin_password: 'admin'
+
+db_password: 1234
+db_username: konstantin

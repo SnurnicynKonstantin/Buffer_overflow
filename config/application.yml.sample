@@ -1,0 +1,12 @@
+github_id:      'gh_id'
+github_token:   'gh_token'
+facebook_id:    'fb_id'
+facebook_token: 'fb_token'
+twitter_id:     'iw_id'
+twitter_token:  'tw_token'
+
+admin_name:     name
+admin_password: password
+
+db_password: password
+db_username: name
